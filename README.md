@@ -3,7 +3,9 @@
 
 ## Get Started
 Create .env file in the root directory and add the following configs:
+
 `USERNAME=<chess.com username>`
+
 `OUTPUT_PATH='./archive'`
 
 ### Create virtualenv and activate
