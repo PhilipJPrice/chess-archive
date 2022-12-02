@@ -18,12 +18,15 @@ def generate_archive():
     year_end = datetime.datetime.today().year
 
     for year in range(year_start, year_end+1):
-        data_folder = Path(Config.OUTPUT_PATH + str(year))
+        dir_path = Path(Config.OUTPUT_PATH) / str(year)
+        dir_path.mkdir(parents=True, exist_ok=True)
         for i in range(1, 13):
             month = str(i).zfill(2)
             games = api.get_games_by_month(year=year, month=month)
-            file_path = data_folder / f'/{month}.pgn'
-            with open(file_path, 'w+', encoding='utf-8') as f:
+            path = dir_path / f'{month}.pgn'
+            path.touch(exist_ok=True)
+            with path.open("w+", encoding="utf-8") as f:
+                print(f"Writing games to {path}")
                 f.write(games)
                 f.close()
 
