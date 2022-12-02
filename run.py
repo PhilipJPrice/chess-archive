@@ -18,7 +18,7 @@ def generate_archive():
     year_end = datetime.datetime.today().year
 
     for year in range(year_start, year_end+1):
-        data_folder = Path(Config.OUTPUT_PATH + year)
+        data_folder = Path(Config.OUTPUT_PATH + str(year))
         for i in range(1, 13):
             month = str(i).zfill(2)
             games = api.get_games_by_month(year=year, month=month)
